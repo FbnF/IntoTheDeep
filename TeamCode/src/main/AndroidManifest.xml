@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.firstinspires.ftc.teamcode">
+<!--  Application declaration  -->
+<application>
+<!--  Main activity  -->
+<activity android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity" android:exported="true">
+<intent-filter>
+<action android:name="android.intent.action.MAIN"/>
+<category android:name="android.intent.category.LAUNCHER"/>
+</intent-filter>
+</activity>
+<!--  Permissions validator wrapper activity  -->
+<activity android:name="org.firstinspires.ftc.robotcontroller.internal.PermissionValidatorWrapper" android:exported="false"/>
+</application>
+</manifest>
