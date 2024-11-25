@@ -12,6 +12,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.drive.MecanumDriveBase;
 import org.firstinspires.ftc.teamcode.subsytems.Gripper;
+import org.firstinspires.ftc.teamcode.drive.TelemetryInfo;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 // - - - - - - - - - - Imports - - - - - - - - - - - - -
 /* testing out the commit info */
 
@@ -37,7 +39,7 @@ public class SimpleTeleop extends LinearOpMode {
     // - - - Constants + Variables - - - //
     //- - - - - - - - - - - - - - Initialization - - - - - - - - - - - -
 
-    FtcDashboard dashboard;
+    //FtcDashboard dashboard;
 
 
     @Override
@@ -49,6 +51,8 @@ public class SimpleTeleop extends LinearOpMode {
         MecanumDriveBase drive = new MecanumDriveBase(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // - - - Setting up Mecanum Drive - - - //
+
+       // TelemetryInfo.setTelemetryRate(50);
 
         // - - - Setting up arm, two-stage motors, and gripper - - - //
         ArmMotor = hardwareMap.get(DcMotorEx.class, "ArmMotor");
@@ -67,8 +71,9 @@ public class SimpleTeleop extends LinearOpMode {
         // - - - Configuring motor modes and behaviors - - - //
 
         // - - - Set up dashboard telemetry - - - //
-        dashboard = FtcDashboard.getInstance();
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        //dashboard = FtcDashboard.getInstance();
+        //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         // - - - Set up dashboard telemetry - - - //
 
 
@@ -136,13 +141,13 @@ public class SimpleTeleop extends LinearOpMode {
             if (gamepad2.left_trigger > 0) {
                 TwoStageMotor.setPower(gamepad2.left_trigger); // Extend
                 TwoStagePos= TwoStageMotor.getCurrentPosition();
-                telemetry.addData("TwoStage Position", TwoStagePos);
-                telemetry.update();
+            //    telemetry.addData("TwoStage Position", TwoStagePos);
+             //   telemetry.update();
             } else if (gamepad2.right_trigger > 0) {
                 TwoStageMotor.setPower(-gamepad2.right_trigger); // Retract
                 TwoStagePos= TwoStageMotor.getCurrentPosition();
-                telemetry.addData("TwoStage Position", TwoStagePos);
-                telemetry.update();
+               // telemetry.addData("TwoStage Position", TwoStagePos);
+                //telemetry.update();
             } else {
                 TwoStageMotor.setPower(0); // Stop if neither trigger is pressed
             }
@@ -165,11 +170,13 @@ public class SimpleTeleop extends LinearOpMode {
 
             // - - - Telemetry Updates - - - //
             // Sending important data to telemetry to monitor
+            /*
             telemetry.addData("Arm Position", ArmMotor.getCurrentPosition());
             telemetry.addData("Holding Position", holdingPosition);
             telemetry.addData("Elapsed Time", teleopTimer.time());
             telemetry.update();
             // - - - Telemetry Updates - - - //
+            */
         }
     }
 }
