@@ -24,16 +24,17 @@ public class Gripper {
 
 
     //Constants for gripper
-    //larer numbers are more clockwise
 
 
+    // Speed servo control in Continuous mode
     private static final double Gripper_STOP = 0.5; //speed servo stopped
     private static final double Gripper_FORWARD = 1.0; //full speed forward
     private static final double Gripper_REVERSE = 0.0; //full speed backward
 
 
-    private static final double      ANGLER_UP     = 1.0; // deposit the pixel
-    private static final double      ANGLER_DOWN      = 0.65; // Loading the pixel
+    // Torque Servo in Servo mode
+    private static final double      ANGLER_UP     = 1.0;
+    private static final double      ANGLER_DOWN      = 0.65;
     Telemetry       telemetry;
     LinearOpMode    opmode; // need content from Linear opmodes here. Elapsed time mainly
 
@@ -53,8 +54,8 @@ public class Gripper {
     public void init(HardwareMap hwMap)  {
 
         // Initialize the gripper
-        gripper = hwMap.get(Servo.class,"gripper"); //Exp Hub port 4
-        angler = hwMap.get(Servo.class,"angler"); // Exp Hub port 0
+        gripper = hwMap.get(Servo.class,"gripper"); // Ctrl hub port 0
+        angler = hwMap.get(Servo.class,"angler"); // Ctrl Hub port 1
         gripper.setDirection(Servo.Direction.REVERSE);
 
 

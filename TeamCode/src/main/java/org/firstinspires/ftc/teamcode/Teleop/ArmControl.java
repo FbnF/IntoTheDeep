@@ -45,6 +45,7 @@ public class ArmControl {
     }
     // Method to set the target position in degrees
     public void setDesArmPosDeg(double desArmPosDeg) {
+
         this.desArmPosDeg = desArmPosDeg;
     }
 

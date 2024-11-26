@@ -13,7 +13,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.drive.MecanumDriveBase;
 import org.firstinspires.ftc.teamcode.subsytems.Gripper;
 import org.firstinspires.ftc.teamcode.drive.TelemetryInfo;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 // - - - - - - - - - - Imports - - - - - - - - - - - - -
 /* testing out the commit info */
 
@@ -38,8 +37,6 @@ public class SimpleTeleop extends LinearOpMode {
     private boolean holdingPosition = false; // Tracking if arm is in hold mode
     // - - - Constants + Variables - - - //
     //- - - - - - - - - - - - - - Initialization - - - - - - - - - - - -
-
-    //FtcDashboard dashboard;
 
 
     @Override
@@ -73,7 +70,9 @@ public class SimpleTeleop extends LinearOpMode {
         // - - - Set up dashboard telemetry - - - //
         //dashboard = FtcDashboard.getInstance();
         //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-
+        FtcDashboard dashboard;
+        dashboard = FtcDashboard.getInstance();
+        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
         // - - - Set up dashboard telemetry - - - //
 
 
@@ -81,12 +80,12 @@ public class SimpleTeleop extends LinearOpMode {
         gripper.init(hardwareMap);
         gripper.gripperStopped();
         gripper.setAnglerDown();
-        // - - - Initialize gripper to starting position - - - //
+
 
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
         teleopTimer.reset();
-        // - - - Waiting for start signal from driver station - - - //
+
 
         // - - - - - - - - - - Initialize components - - - - - - - - - -
 
@@ -102,7 +101,7 @@ public class SimpleTeleop extends LinearOpMode {
                     -gamepad1.left_stick_x * speedFactor, // Strafing Left/right
                     -gamepad1.right_stick_x * speedFactor // Rotation
             ));
-            // - - - Mecanum drive control - - - //
+
 
 
             // - - - Arm Control with Hold Position Feature - - - /
@@ -140,14 +139,8 @@ public class SimpleTeleop extends LinearOpMode {
             double TwoStagePos;
             if (gamepad2.left_trigger > 0) {
                 TwoStageMotor.setPower(gamepad2.left_trigger); // Extend
-                TwoStagePos= TwoStageMotor.getCurrentPosition();
-            //    telemetry.addData("TwoStage Position", TwoStagePos);
-             //   telemetry.update();
             } else if (gamepad2.right_trigger > 0) {
                 TwoStageMotor.setPower(-gamepad2.right_trigger); // Retract
-                TwoStagePos= TwoStageMotor.getCurrentPosition();
-               // telemetry.addData("TwoStage Position", TwoStagePos);
-                //telemetry.update();
             } else {
                 TwoStageMotor.setPower(0); // Stop if neither trigger is pressed
             }
@@ -170,13 +163,15 @@ public class SimpleTeleop extends LinearOpMode {
 
             // - - - Telemetry Updates - - - //
             // Sending important data to telemetry to monitor
-            /*
+
             telemetry.addData("Arm Position", ArmMotor.getCurrentPosition());
             telemetry.addData("Holding Position", holdingPosition);
+            telemetry.addData("TwoStage Position", TwoStageMotor.getCurrentPosition());
             telemetry.addData("Elapsed Time", teleopTimer.time());
+
             telemetry.update();
             // - - - Telemetry Updates - - - //
-            */
+
         }
     }
 }
