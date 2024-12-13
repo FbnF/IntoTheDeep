@@ -2,17 +2,11 @@ package org.firstinspires.ftc.teamcode.subsytems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
-
-import static java.lang.Thread.sleep;
 
 @Config // this is so the dashboard will pick up variables
 public class Gripper {
@@ -24,17 +18,16 @@ public class Gripper {
 
 
     //Constants for gripper
+    //larer numbers are more clockwise
 
 
-    // Speed servo control in Continuous mode
     private static final double Gripper_STOP = 0.5; //speed servo stopped
     private static final double Gripper_FORWARD = 1.0; //full speed forward
     private static final double Gripper_REVERSE = 0.0; //full speed backward
 
 
-    // Torque Servo in Servo mode
-    private static final double      ANGLER_UP     = 1.0;
-    private static final double      ANGLER_DOWN      = 0.65;
+    private static final double      ANGLER_UP     = 1.0; //1.0 parallel to ground
+    private static final double      ANGLER_DOWN      = 0.67; //0.67 parallel to the side
     Telemetry       telemetry;
     LinearOpMode    opmode; // need content from Linear opmodes here. Elapsed time mainly
 
@@ -54,8 +47,8 @@ public class Gripper {
     public void init(HardwareMap hwMap)  {
 
         // Initialize the gripper
-        gripper = hwMap.get(Servo.class,"gripper"); // Ctrl hub port 0
-        angler = hwMap.get(Servo.class,"angler"); // Ctrl Hub port 1
+        gripper = hwMap.get(Servo.class,"gripper"); //Exp Hub port 4
+        angler = hwMap.get(Servo.class,"angler"); // Exp Hub port 0
         gripper.setDirection(Servo.Direction.REVERSE);
 
 
