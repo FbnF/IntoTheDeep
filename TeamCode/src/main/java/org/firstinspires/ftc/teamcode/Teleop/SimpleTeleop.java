@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.subsytems.SliderControl;
 import org.firstinspires.ftc.teamcode.subsytems.Gripper;
 
 
-@Config
+//@Config
 @TeleOp(group = "Teleop")
 public class SimpleTeleop extends LinearOpMode {
 
@@ -48,7 +48,7 @@ public class SimpleTeleop extends LinearOpMode {
     private double ArmCurPosDeg;
     private int GripperRollInInd=0;
     private PIDFCoefficients Default_Pid;
-    FtcDashboard dashboard;
+    //FtcDashboard dashboard;
     // - - - Constants + Variables - - - //
     //- - - - - - - - - - - - - - Initialization - - - - - - - - - - - -
 
