@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-@Config
+//@Config
 public class TrajectorySequenceRunner {
     public static String COLOR_INACTIVE_TRAJECTORY = "#4caf507a";
     public static String COLOR_INACTIVE_TURN = "#7c4dff7a";
@@ -54,7 +54,7 @@ public class TrajectorySequenceRunner {
 
     List<TrajectoryMarker> remainingMarkers = new ArrayList<>();
 
-    private final FtcDashboard dashboard;
+    //private final FtcDashboard dashboard;
     private final LinkedList<Pose2d> poseHistory = new LinkedList<>();
 
     public TrajectorySequenceRunner(TrajectoryFollower follower, PIDCoefficients headingPIDCoefficients) {
@@ -65,8 +65,8 @@ public class TrajectorySequenceRunner {
 
         clock = NanoClock.system();
 
-        dashboard = FtcDashboard.getInstance();
-        dashboard.setTelemetryTransmissionInterval(25);
+       // dashboard = FtcDashboard.getInstance();
+       // dashboard.setTelemetryTransmissionInterval(25);
     }
 
     public void followTrajectorySequenceAsync(TrajectorySequence trajectorySequence) {
@@ -81,8 +81,8 @@ public class TrajectorySequenceRunner {
         Pose2d targetPose = null;
         DriveSignal driveSignal = null;
 
-        TelemetryPacket packet = new TelemetryPacket();
-        Canvas fieldOverlay = packet.fieldOverlay();
+       // TelemetryPacket packet = new TelemetryPacket();
+        //Canvas fieldOverlay = packet.fieldOverlay();
 
         SequenceSegment currentSegment = null;
 
@@ -183,7 +183,7 @@ public class TrajectorySequenceRunner {
         if (POSE_HISTORY_LIMIT > -1 && poseHistory.size() > POSE_HISTORY_LIMIT) {
             poseHistory.removeFirst();
         }
-
+        /*
         packet.put("x", poseEstimate.getX());
         packet.put("y", poseEstimate.getY());
         packet.put("heading (deg)", Math.toDegrees(poseEstimate.getHeading()));
@@ -193,14 +193,14 @@ public class TrajectorySequenceRunner {
         packet.put("headingError (deg)", Math.toDegrees(getLastPoseError().getHeading()));
 
         draw(fieldOverlay, currentTrajectorySequence, currentSegment, targetPose, poseEstimate);
-
-        dashboard.sendTelemetryPacket(packet);
+        */
+       // dashboard.sendTelemetryPacket(packet);
 
         return driveSignal;
     }
 
     private void draw(
-            Canvas fieldOverlay,
+           // Canvas fieldOverlay,
             TrajectorySequence sequence, SequenceSegment currentSegment,
             Pose2d targetPose, Pose2d poseEstimate
     ) {
@@ -209,21 +209,21 @@ public class TrajectorySequenceRunner {
                 SequenceSegment segment = sequence.get(i);
 
                 if (segment instanceof TrajectorySegment) {
-                    fieldOverlay.setStrokeWidth(1);
-                    fieldOverlay.setStroke(COLOR_INACTIVE_TRAJECTORY);
+                    //fieldOverlay.setStrokeWidth(1);
+                    //fieldOverlay.setStroke(COLOR_INACTIVE_TRAJECTORY);
 
-                    DashboardUtil.drawSampledPath(fieldOverlay, ((TrajectorySegment) segment).getTrajectory().getPath());
+                   // DashboardUtil.drawSampledPath(fieldOverlay, ((TrajectorySegment) segment).getTrajectory().getPath());
                 } else if (segment instanceof TurnSegment) {
                     Pose2d pose = segment.getStartPose();
 
-                    fieldOverlay.setFill(COLOR_INACTIVE_TURN);
-                    fieldOverlay.fillCircle(pose.getX(), pose.getY(), 2);
+                    //fieldOverlay.setFill(COLOR_INACTIVE_TURN);
+                    //fieldOverlay.fillCircle(pose.getX(), pose.getY(), 2);
                 } else if (segment instanceof WaitSegment) {
                     Pose2d pose = segment.getStartPose();
-
+                    /*
                     fieldOverlay.setStrokeWidth(1);
                     fieldOverlay.setStroke(COLOR_INACTIVE_WAIT);
-                    fieldOverlay.strokeCircle(pose.getX(), pose.getY(), 3);
+                    fieldOverlay.strokeCircle(pose.getX(), pose.getY(), 3);*/
                 }
             }
         }
@@ -232,35 +232,36 @@ public class TrajectorySequenceRunner {
             if (currentSegment instanceof TrajectorySegment) {
                 Trajectory currentTrajectory = ((TrajectorySegment) currentSegment).getTrajectory();
 
-                fieldOverlay.setStrokeWidth(1);
-                fieldOverlay.setStroke(COLOR_ACTIVE_TRAJECTORY);
+                //fieldOverlay.setStrokeWidth(1);
+                //fieldOverlay.setStroke(COLOR_ACTIVE_TRAJECTORY);
 
-                DashboardUtil.drawSampledPath(fieldOverlay, currentTrajectory.getPath());
+               // DashboardUtil.drawSampledPath(fieldOverlay, currentTrajectory.getPath());
             } else if (currentSegment instanceof TurnSegment) {
                 Pose2d pose = currentSegment.getStartPose();
 
-                fieldOverlay.setFill(COLOR_ACTIVE_TURN);
-                fieldOverlay.fillCircle(pose.getX(), pose.getY(), 3);
+                //fieldOverlay.setFill(COLOR_ACTIVE_TURN);
+                //fieldOverlay.fillCircle(pose.getX(), pose.getY(), 3);
             } else if (currentSegment instanceof WaitSegment) {
                 Pose2d pose = currentSegment.getStartPose();
-
+                /*
                 fieldOverlay.setStrokeWidth(1);
                 fieldOverlay.setStroke(COLOR_ACTIVE_WAIT);
-                fieldOverlay.strokeCircle(pose.getX(), pose.getY(), 3);
+                fieldOverlay.strokeCircle(pose.getX(), pose.getY(), 3); */
             }
         }
 
         if (targetPose != null) {
+            /*
             fieldOverlay.setStrokeWidth(1);
-            fieldOverlay.setStroke("#4CAF50");
-            DashboardUtil.drawRobot(fieldOverlay, targetPose);
+            fieldOverlay.setStroke("#4CAF50");*/
+            //DashboardUtil.drawRobot(fieldOverlay, targetPose);
         }
 
-        fieldOverlay.setStroke("#3F51B5");
-        DashboardUtil.drawPoseHistory(fieldOverlay, poseHistory);
+        //fieldOverlay.setStroke("#3F51B5");
+        //DashboardUtil.drawPoseHistory(fieldOverlay, poseHistory);
 
-        fieldOverlay.setStroke("#3F51B5");
-        DashboardUtil.drawRobot(fieldOverlay, poseEstimate);
+       // fieldOverlay.setStroke("#3F51B5");
+        //DashboardUtil.drawRobot(fieldOverlay, poseEstimate);
     }
 
     public Pose2d getLastPoseError() {
