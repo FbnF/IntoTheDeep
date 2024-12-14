@@ -61,7 +61,7 @@ public class ArmControl {
     public void setArmHanging(double tgtArmPosDeg) {
         desArmPosTick = (int)((tgtArmPosDeg-initialPosDeg)/degreesPerTick);
         ArmMotor.setTargetPosition(desArmPosTick);
-        ArmMotor.setPower(0.8);
+        ArmMotor.setPower(0.9);
         ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
     // Set Arm angle to the Deposit angle for deposit

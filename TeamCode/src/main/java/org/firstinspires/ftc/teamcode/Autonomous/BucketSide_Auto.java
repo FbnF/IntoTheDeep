@@ -42,7 +42,7 @@ public class BucketSide_Auto extends LinearOpMode {
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
         gripper.gripperStopped();
-        gripper.setAnglerDown();
+        gripper.setAnglerInit();
 
 
         // Initialize telemetry
@@ -66,7 +66,7 @@ public class BucketSide_Auto extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.setAnglerUP();})
 
                 //.UNSTABLE_addTemporalMarkerOffset(0.5, () -> {sliderControl.setDesSliderLen(1);})
-                .waitSeconds(0.1)
+                .waitSeconds(6)
                 .lineToLinearHeading(SpecimenDropoffPos)
                 .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.setAnglerDown();})
 

@@ -81,7 +81,7 @@ public class SimpleTeleop extends LinearOpMode {
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
         gripper.gripperStopped();
-        gripper.setAnglerDown();
+        gripper.setAnglerInit();
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
@@ -143,11 +143,11 @@ public class SimpleTeleop extends LinearOpMode {
                 ArmCurPosDeg= armControl.getActArmPosDeg();
             }
             if(ArmHangInd==1){
-                armControl.setArmHanging(ArmCurPosDeg);
+                armControl.setArmHanging(-20);
 
             }
             // Allow user to control the arm position once it is pushed more than 0.1 in magnitude
-            if (Math.abs(gamepad2.right_stick_y) > 0.2) {
+            if (Math.abs(gamepad2.right_stick_y) > 0.2 ) {
                     // Reset all the position indicators
                     ArmIntakeInd = 0;
                     ArmLatchInd=0;
@@ -220,6 +220,7 @@ public class SimpleTeleop extends LinearOpMode {
                     sliderControl.SliderRunModReset();
                 }
             }
+
 
 
             // - - - Gripper control - - - //

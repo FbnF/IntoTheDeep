@@ -42,7 +42,7 @@ public class ObserverSide_Auto extends LinearOpMode {
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
         gripper.gripperStopped();
-        gripper.setAnglerDown();
+        gripper.setAnglerInit();
 
 
         // Initialize telemetry
@@ -71,7 +71,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 3: Move forward 6 inch to prepare for specimen drop off, set arm angle down to 45 deg
                 // and set Gripper to be rolling in to hold the specimen and wait for 0.1 second in the end
-                .forward(6)
+                .forward(7.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(45);})
                 .UNSTABLE_addTemporalMarkerOffset(0.2, () -> gripper.gripperForward(0.3))
                 .waitSeconds(0.1)
@@ -79,7 +79,7 @@ public class ObserverSide_Auto extends LinearOpMode {
                 // Step 4: Stop the gripper after 0.4 second and move the robot backward 11 inch
                 .UNSTABLE_addTemporalMarkerOffset(0.2, () -> gripper.gripperForward(0.3))
                 .UNSTABLE_addTemporalMarkerOffset(0.6, () -> {gripper.gripperStopped();})
-                .back(11)
+                .back(1)
                 .waitSeconds(1)
 
                 .UNSTABLE_addTemporalMarkerOffset(0.2, () -> gripper.gripperReverse(-0.3))

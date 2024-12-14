@@ -86,5 +86,6 @@ public class Gripper {
     public void setAnglerDown() {
         angler.setPosition(ANGLER_DOWN);//fwd
     }
-
+    public void setAnglerInit() {
+        angler.setPosition(0.0);}
 }
