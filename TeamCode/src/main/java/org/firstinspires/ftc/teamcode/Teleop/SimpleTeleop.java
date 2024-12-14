@@ -47,6 +47,7 @@ public class SimpleTeleop extends LinearOpMode {
     private double SliderCurLen;
     private double ArmCurPosDeg;
     private int GripperRollInInd=0;
+    private int setmode=0;
     private PIDFCoefficients Default_Pid;
     //FtcDashboard dashboard;
     // - - - Constants + Variables - - - //
@@ -146,14 +147,14 @@ public class SimpleTeleop extends LinearOpMode {
 
             }
             // Allow user to control the arm position once it is pushed more than 0.1 in magnitude
-            if (Math.abs(gamepad2.right_stick_y) > 0.1) {
+            if (Math.abs(gamepad2.right_stick_y) > 0.2) {
                     // Reset all the position indicators
                     ArmIntakeInd = 0;
                     ArmLatchInd=0;
                     ArmDepositInd=0;
                     ArmHangInd=0;
                     armControl.ArmRunModReset();
-                    armControl.setArmPower(-1.0 * gamepad2.right_stick_y * 0.65);
+                    armControl.setArmPower(-1.0 * gamepad2.right_stick_y * 0.8);
                 } else {
                 if( ArmIntakeInd==0 && ArmLatchInd==0 && ArmDepositInd==0 && ArmHangInd==0) {
                     // zero power plus run mode reset
@@ -191,27 +192,28 @@ public class SimpleTeleop extends LinearOpMode {
                 SliderCurLen= sliderControl.getSliderLen();
             }
             if( SliderRetractInd==1){
-                sliderControl.setSliderRetract(SliderCurLen,2);
+                sliderControl.setDesSliderLen(SliderCurLen);
             }
             // Controlling the slider motor using game pad2's left and right
             // triggers once magnitude > 0.1
-            if (gamepad2.left_trigger > 0.1) {
+            if (gamepad2.left_trigger > 0.2) {
                 // Retracting the slider through driver control
                 // Reset the run to position indicators
 
                 SliderDepositInd=0;
                 SliderRetractInd=0;
-                sliderControl.SliderRunModReset();
-                sliderControl.setSliderPower(-gamepad2.left_trigger * 0.8);
+                sliderControl.SliderRunModEncoder();
+                sliderControl.setSliderPower(-gamepad2.left_trigger * 0.6);
 
-            } else if (gamepad2.right_trigger > 0.1) {
+            } else if (gamepad2.right_trigger > 0.2) {
+
                 // extending the slider through driver control
                 // Reset the run to position indicators
                 SliderDepositInd = 0;
                 SliderRetractInd = 0;
-                sliderControl.SliderRunModReset();
+                sliderControl.SliderRunModEncoder();
                 SliderCurLen = sliderControl.getSliderLen();
-                sliderControl.setSliderPower(gamepad2.right_trigger * 0.8);
+                sliderControl.setSliderPower(gamepad2.right_trigger * 0.6);
             } else {
                 if (SliderDepositInd==0 && SliderRetractInd==0) {
                     // zero power plus run mode reset
@@ -225,9 +227,9 @@ public class SimpleTeleop extends LinearOpMode {
             if (gamepad2.x) gripper.setAnglerUP(); // Set angler to up position
             if (gamepad2.y) gripper.setAnglerDown(); // Set angler to down position
 
-            if (gamepad2.left_stick_x > 0.1) {
+            if (gamepad2.left_stick_x > 0.2) {
                 gripper.gripperForward(gamepad2.left_stick_x); // Move gripper forward
-            } else if (gamepad2.left_stick_x < -0.1) {
+            } else if (gamepad2.left_stick_x < -0.2) {
                 gripper.gripperReverse(gamepad2.left_stick_x); // Move gripper backwards
             } else {
                 if(GripperRollInInd==0){

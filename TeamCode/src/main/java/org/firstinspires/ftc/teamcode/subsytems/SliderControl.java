@@ -98,4 +98,8 @@ public class SliderControl {
         SliderMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         SliderMotor.setPower(0);
     }
+    // Wrapper method to set the SliderMotor run mode to using encoder
+    public void SliderRunModEncoder(){
+        SliderMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
 }

@@ -31,8 +31,8 @@ public class Gripper {
     private static final double Gripper_REVERSE = 0.0; //full speed backward
 
 
-    private static final double      ANGLER_UP     = 1.0; //1.0 parallel to ground
-    private static final double      ANGLER_DOWN      = 0.67; //0.67 parallel to the side
+    private static final double      ANGLER_UP     = 0.4; //1.0 parallel to ground
+    private static final double      ANGLER_DOWN      = 0.1; //0.67 parallel to the side
     Telemetry       telemetry;
     LinearOpMode    opmode; // need content from Linear opmodes here. Elapsed time mainly
 

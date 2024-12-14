@@ -72,7 +72,7 @@ public class BucketSide_Auto extends LinearOpMode {
 
 
                 //.waitSeconds(1)
-                .forward(7)
+                .forward(8.5)
                 // Step 5: Set Arm to the Deposit angle
 
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(45);})
@@ -87,7 +87,7 @@ public class BucketSide_Auto extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.4, () -> {gripper.gripperStopped();})
 
 
-                .back(10)
+                .back(11.5)
                 .strafeLeft(30)
                 .forward(31)
                 // strafe left to prepare for pushing the sample to SampleDropoffPos1
