@@ -80,8 +80,9 @@ public class SimpleTeleop extends LinearOpMode {
         // - - - Initialize gripper to starting position - - - //
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
-        gripper.gripperStopped();
-        gripper.setAnglerInit();
+        gripper.setGripperPosition(0.93);
+        gripper.setGripperHolderPosition(0.0);
+        gripper.setAnglerPosition(0.0);
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
@@ -163,37 +164,7 @@ public class SimpleTeleop extends LinearOpMode {
             }
 
             // - - - Slider motor control - - - //
-            // gamepad1 B button will set gripper rolling in for depositing the specimen
-            if(gamepad1.b) {
-                GripperRollInInd=1;
-            }
-            if(GripperRollInInd==1){
-                gripper.gripperForward(0.3);
-            }
 
-            // gamepad1 X button will stop the Gripper power
-            if(gamepad1.x) {
-                GripperRollInInd=0;
-                gripper.gripperStopped();
-            }
-
-            // right bumper to set slider to the full extension for deposit the sample
-            if (gamepad2.right_bumper) {
-                SliderDepositInd= 1;
-                SliderRetractInd=0;
-            }
-            if (SliderDepositInd==1) {
-                sliderControl.setSliderDeposit();;
-            }
-            // gamepad2 b button for set slider length to 2in less
-            if (gamepad2.b) {
-                SliderRetractInd=1;
-                SliderDepositInd=0;
-                SliderCurLen= sliderControl.getSliderLen();
-            }
-            if( SliderRetractInd==1){
-                sliderControl.setDesSliderLen(SliderCurLen);
-            }
             // Controlling the slider motor using game pad2's left and right
             // triggers once magnitude > 0.1
             if (gamepad2.left_trigger > 0.2) {
@@ -225,19 +196,29 @@ public class SimpleTeleop extends LinearOpMode {
 
             // - - - Gripper control - - - //
             // Control gripper angler and position using gamepad2's buttons and left stick
-            if (gamepad2.x) gripper.setAnglerUP(); // Set angler to up position
-            if (gamepad2.y) gripper.setAnglerDown(); // Set angler to down position
+            if (gamepad2.x) gripper.setGripperPosition(0.80); // Set angler to up position
+            if (gamepad2.y) gripper.setGripperHolderPosition(0.34); // Set angler to down position
 
-            if (gamepad2.left_stick_x > 0.2) {
-                gripper.gripperForward(gamepad2.left_stick_x); // Move gripper forward
-            } else if (gamepad2.left_stick_x < -0.2) {
-                gripper.gripperReverse(gamepad2.left_stick_x); // Move gripper backwards
-            } else {
-                if(GripperRollInInd==0){
-                    gripper.gripperStopped(); // Stop gripper movement
-                }
+            // gamepad2 b button for open the girpper
+            if (gamepad2.b) {
+                gripper.setGripperPosition(0.93);
             }
 
+            // right bumper to turn the Gripper Holder back to the init position
+            if (gamepad2.right_bumper) {
+                gripper.setGripperHolderPosition(0.0);
+            }
+            // dpad_left to rotate to the intake position for sample pickup/dropoff
+            if (gamepad2.dpad_left) {
+                gripper.setAnglerPosition(0.3);
+            }
+            // dpad_right to set the whole gripper system to the init position
+            // on the side for dimension limit requirement
+            if (gamepad2.dpad_right) {
+                gripper.setAnglerPosition(0.0);
+            }
+
+            // angler control using gamepad hat
 
             /*
             // - - - Telemetry Updates - - - //

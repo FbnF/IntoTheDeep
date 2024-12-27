@@ -19,6 +19,7 @@ public class Gripper {
     //Define Hardware Objects
     private Servo gripper     = null;
     private Servo angler      = null;
+    private Servo gripperholder = null;
 
 
 
@@ -52,9 +53,13 @@ public class Gripper {
     public void init(HardwareMap hwMap)  {
 
         // Initialize the gripper
-        gripper = hwMap.get(Servo.class,"gripper"); //Exp Hub port 4
-        angler = hwMap.get(Servo.class,"angler"); // Exp Hub port 0
-        gripper.setDirection(Servo.Direction.REVERSE);
+        //Control Hub port 0
+        gripper = hwMap.get(Servo.class,"gripper");
+        //Control Hub port 2
+        gripperholder = hwMap.get(Servo.class,"gripperholder");
+        //Control Hub port 1
+        angler = hwMap.get(Servo.class,"angler");
+
 
 
     }
@@ -86,6 +91,13 @@ public class Gripper {
     public void setAnglerDown() {
         angler.setPosition(ANGLER_DOWN);//fwd
     }
+    public void setAnglerPosition(double pos_request) {
+        angler.setPosition(pos_request);}
+    public void setGripperPosition(double pos_request) {
+        gripper.setPosition(pos_request);}
+    public void setGripperHolderPosition(double pos_request) {
+        gripperholder.setPosition(pos_request);}
+
     public void setAnglerInit() {
         angler.setPosition(0.0);}
 }
