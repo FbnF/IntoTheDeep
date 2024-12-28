@@ -50,23 +50,7 @@ public class SimpleTeleop extends LinearOpMode {
     private int setmode=0;
     private PIDFCoefficients Default_Pid;
 
-    // Gripper subsystem constants
-    // GripperHolderInit: The initial postion for the gripperholder servo
-    private double GripperHolderInit=0.52;
-    //GripperHolderRotPos: The postion after rotation for the gripperholder servo
-    private double GripperHolderRotPos=0.87;
 
-    //GripperOpen: The Gripper in the open position to prepare for pick up
-    // sample/specimen for gripper servo
-    private double GripperOpen=0.93;
-    //GripperOpen: The Gripper in the close position for pick up sample/specimen
-    // for gripper servo
-    private double GripperClose=0.80;
-
-    //AnglerInit: The initial position for the angler servo
-    private double AnglerInit=0.0;
-    //AnglerRotPos: The Position after Rotation for the angler servo
-    private double AnglerRotPos=0.3;
     //FtcDashboard dashboard;
     // - - - Constants + Variables - - - //
     //- - - - - - - - - - - - - - Initialization - - - - - - - - - - - -
@@ -99,10 +83,10 @@ public class SimpleTeleop extends LinearOpMode {
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
         //Gripper open state
-        gripper.setGripperPosition(GripperOpen);
-        //Gripper to the side
-        gripper.setGripperHolderPosition(GripperHolderInit);
-        gripper.setAnglerPosition(AnglerInit);
+        gripper.setGripperOpen();
+        //Gripper holder to the side
+        gripper.setGripperHolderParallel();
+        gripper.setAnglerSide();
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
@@ -212,48 +196,35 @@ public class SimpleTeleop extends LinearOpMode {
                 }
             }
 
-
-
             // - - - Gripper control - - - //
-            // Control gripper angler and position using gamepad2's buttons and left stick
-            if (gamepad2.x) gripper.setGripperPosition(GripperClose); // Set angler to up position
-            if (gamepad2.y) gripper.setGripperHolderPosition(GripperHolderRotPos); // Set angler to down position
-
-            // gamepad2 b button for open the girpper
+            // gamepad2 b button for open the gripper
             if (gamepad2.b) {
-                gripper.setGripperPosition(GripperOpen);
+                gripper.setGripperOpen();
             }
-
-            // right bumper to turn the Gripper Holder back to the init position
+            // gamepad2 x button for close the gripper
+            if (gamepad2.x){
+                gripper.setGripperClosed();
+            }
+            // - - - Gripper Holder control - - - //
+            // gamepad2 y button for setting gripper holder forward
+            if (gamepad2.y) {
+                gripper.setGripperHolderPerpendicular();
+            }
+            // gamepad2 right bumper to turn the Gripper Holder to the side
             if (gamepad2.right_bumper) {
-                gripper.setGripperHolderPosition(GripperHolderInit);
+                gripper.setGripperHolderParallel();
             }
-            // dpad_left to rotate to the intake position for sample pickup/dropoff
+
+            // angler control using gamepad dpad left and right (Hat)
+            // dpad_left to for the Gripper system to face forward
             if (gamepad2.dpad_left) {
-                gripper.setAnglerPosition(AnglerRotPos);
+                gripper.setAnglerForward();
             }
-            // dpad_right to set the whole gripper system to the init position
-            // on the side for dimension limit requirement
+            // dpad_right to set the Gripper system to the Side position
             if (gamepad2.dpad_right) {
-                gripper.setAnglerPosition(AnglerInit);
+                gripper.setAnglerSide();
             }
 
-            // angler control using gamepad hat
-
-            /*
-            // - - - Telemetry Updates - - - //
-            // Sending important data to telemetry to monitor
-            telemetry.addData("Arm Actual Position in Degree","%.3f", armControl.getActArmPosDeg());
-            telemetry.addData("Arm Tgt Position in Ticks", armControl.getTgtArmTick());
-            telemetry.addData("Arm Current Position in Ticks", armControl.getActArmTick());
-            telemetry.addData("Arm Motor Power", "%.2f",armControl.getArmPower());
-            telemetry.addData("Elapsed Time", "%.2f", teleopTimer.time());
-            telemetry.addData("TwoStage Position", sliderControl.getSliderLen());
-            telemetry.addData("Gripper Roll In Indicator", GripperRollInInd);
-            telemetry.addData("Active Speed Factor: ", speedFactor);
-            telemetry.update();
-
-             */
 
         }
     }

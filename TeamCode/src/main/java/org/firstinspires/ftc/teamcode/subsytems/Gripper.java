@@ -23,7 +23,23 @@ public class Gripper {
 
 
 
-    //Constants for gripper
+    // Gripper subsystem constants
+    // GripperHolderInit: The initial position for the gripperholder servo
+    private double GripperHolderInit=0.52;
+    //GripperHolderRotPos: The postion after rotation for the gripperholder servo
+    private double GripperHolderRotPos=0.87;
+
+    //GripperOpen: The Gripper in the open position to prepare for pick up
+    // sample/specimen for gripper servo
+    private double GripperOpen=0.93;
+    //GripperOpen: The Gripper in the close position for pick up sample/specimen
+    // for gripper servo
+    private double GripperClose=0.80;
+
+    //AnglerInit: The initial position for the angler servo
+    private double AnglerInit=0.0;
+    //AnglerRotPos: The Position after Rotation for the angler servo
+    private double AnglerRotPos=0.3;
     //larer numbers are more clockwise
 
 
@@ -75,6 +91,37 @@ public class Gripper {
         gripper.setPosition(newLevel);
 
     }
+    // Gripper open function
+    public void setGripperOpen() {
+        //Gripper open state
+        setGripperPosition(GripperOpen);
+    }
+    // Gripper close function
+    public void setGripperClosed() {
+        //Gripper open state
+        setGripperPosition(GripperClose);
+    }
+
+    // Gripper Holder parallel to the holding bar
+    public void setGripperHolderParallel() {
+        setGripperHolderPosition(GripperHolderInit);
+    }
+    // Gripper Holder perpendicular to the holding bar
+    public void setGripperHolderPerpendicular() {
+        setGripperHolderPosition(GripperHolderRotPos);
+    }
+
+    // Gripper system facing the side
+    public void setAnglerSide() {
+        //Gripper system Side Position
+        setAnglerPosition(AnglerInit);
+    }
+    // Gripper system facing forward
+    public void setAnglerForward() {
+        //Gripper system Forward Position
+        setAnglerPosition(AnglerRotPos);
+    }
+
     public void gripperForward(double factor){
         //new level factor to adjust right position
         double newLevel = factor*0.5+0.5;
