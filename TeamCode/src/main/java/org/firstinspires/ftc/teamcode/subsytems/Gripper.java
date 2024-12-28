@@ -64,6 +64,8 @@ public class Gripper {
 
     }
 
+    //* The following should all be removed once the update is complete
+
     public void gripperReverse(double factor){
         //makes new level by taking factor to adjust the right position
         double newLevel = 0.5+factor*0.5;
@@ -91,6 +93,11 @@ public class Gripper {
     public void setAnglerDown() {
         angler.setPosition(ANGLER_DOWN);//fwd
     }
+    public void setAnglerInit() {
+        angler.setPosition(0.0);}
+
+    //*
+
     public void setAnglerPosition(double pos_request) {
         angler.setPosition(pos_request);}
     public void setGripperPosition(double pos_request) {
@@ -98,6 +105,5 @@ public class Gripper {
     public void setGripperHolderPosition(double pos_request) {
         gripperholder.setPosition(pos_request);}
 
-    public void setAnglerInit() {
-        angler.setPosition(0.0);}
+
 }

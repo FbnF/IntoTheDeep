@@ -49,6 +49,24 @@ public class SimpleTeleop extends LinearOpMode {
     private int GripperRollInInd=0;
     private int setmode=0;
     private PIDFCoefficients Default_Pid;
+
+    // Gripper subsystem constants
+    // GripperHolderInit: The initial postion for the gripperholder servo
+    private double GripperHolderInit=0.52;
+    //GripperHolderRotPos: The postion after rotation for the gripperholder servo
+    private double GripperHolderRotPos=0.87;
+
+    //GripperOpen: The Gripper in the open position to prepare for pick up
+    // sample/specimen for gripper servo
+    private double GripperOpen=0.93;
+    //GripperOpen: The Gripper in the close position for pick up sample/specimen
+    // for gripper servo
+    private double GripperClose=0.80;
+
+    //AnglerInit: The initial position for the angler servo
+    private double AnglerInit=0.0;
+    //AnglerRotPos: The Position after Rotation for the angler servo
+    private double AnglerRotPos=0.3;
     //FtcDashboard dashboard;
     // - - - Constants + Variables - - - //
     //- - - - - - - - - - - - - - Initialization - - - - - - - - - - - -
@@ -80,9 +98,11 @@ public class SimpleTeleop extends LinearOpMode {
         // - - - Initialize gripper to starting position - - - //
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
-        gripper.setGripperPosition(0.93);
-        gripper.setGripperHolderPosition(0.0);
-        gripper.setAnglerPosition(0.0);
+        //Gripper open state
+        gripper.setGripperPosition(GripperOpen);
+        //Gripper to the side
+        gripper.setGripperHolderPosition(GripperHolderInit);
+        gripper.setAnglerPosition(AnglerInit);
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
@@ -144,7 +164,7 @@ public class SimpleTeleop extends LinearOpMode {
                 ArmCurPosDeg= armControl.getActArmPosDeg();
             }
             if(ArmHangInd==1){
-                armControl.setArmHanging(-20);
+                armControl.setArmPower(-0.6);
 
             }
             // Allow user to control the arm position once it is pushed more than 0.1 in magnitude
@@ -196,26 +216,26 @@ public class SimpleTeleop extends LinearOpMode {
 
             // - - - Gripper control - - - //
             // Control gripper angler and position using gamepad2's buttons and left stick
-            if (gamepad2.x) gripper.setGripperPosition(0.80); // Set angler to up position
-            if (gamepad2.y) gripper.setGripperHolderPosition(0.34); // Set angler to down position
+            if (gamepad2.x) gripper.setGripperPosition(GripperClose); // Set angler to up position
+            if (gamepad2.y) gripper.setGripperHolderPosition(GripperHolderRotPos); // Set angler to down position
 
             // gamepad2 b button for open the girpper
             if (gamepad2.b) {
-                gripper.setGripperPosition(0.93);
+                gripper.setGripperPosition(GripperOpen);
             }
 
             // right bumper to turn the Gripper Holder back to the init position
             if (gamepad2.right_bumper) {
-                gripper.setGripperHolderPosition(0.0);
+                gripper.setGripperHolderPosition(GripperHolderInit);
             }
             // dpad_left to rotate to the intake position for sample pickup/dropoff
             if (gamepad2.dpad_left) {
-                gripper.setAnglerPosition(0.3);
+                gripper.setAnglerPosition(AnglerRotPos);
             }
             // dpad_right to set the whole gripper system to the init position
             // on the side for dimension limit requirement
             if (gamepad2.dpad_right) {
-                gripper.setAnglerPosition(0.0);
+                gripper.setAnglerPosition(AnglerInit);
             }
 
             // angler control using gamepad hat
