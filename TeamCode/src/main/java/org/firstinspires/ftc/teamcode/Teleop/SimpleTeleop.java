@@ -158,7 +158,7 @@ public class SimpleTeleop extends LinearOpMode {
                     ArmLatchInd=0;
                     ArmDepositInd=0;
                     ArmHangInd=0;
-                    armControl.ArmRunModReset();
+                    armControl.ArmRunModEncoder();
                     armControl.setArmPower(-1.0 * gamepad2.right_stick_y * 0.8);
                 } else {
                 if( ArmIntakeInd==0 && ArmLatchInd==0 && ArmDepositInd==0 && ArmHangInd==0) {
@@ -215,7 +215,7 @@ public class SimpleTeleop extends LinearOpMode {
                 gripper.setGripperHolderParallel();
             }
 
-            // angler control using gamepad dpad left and right (Hat)
+            // angler control using gamepad2 dpad left and right (Hat)
             // dpad_left to for the Gripper system to face forward
             if (gamepad2.dpad_left) {
                 gripper.setAnglerForward();

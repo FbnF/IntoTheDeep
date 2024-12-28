@@ -90,4 +90,9 @@ public class ArmControl {
         ArmMotor.setPower(0);
     }
 
+    // Wrapper method to set the run mode to using encoder
+    public void ArmRunModEncoder(){
+        ArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
 }
