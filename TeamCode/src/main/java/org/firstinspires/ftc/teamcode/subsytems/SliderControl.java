@@ -16,7 +16,7 @@ public class SliderControl {
     // GoBilda 312rpm motor for two stage slider
     private double Inch_Per_Tick = PitchDiameter*Math.PI/25.4/537.7;
     // Intake slider length in Inch
-    private double DepositLength= 17.5;
+    private double DepositLength= 15.5;
     
     // Retract length in Inch
     private double IntakeLength= 5;

@@ -72,7 +72,7 @@ public class BucketSide_Auto extends LinearOpMode {
                 .lineToLinearHeading(SpecimenDropoffPos)
                 .forward(3.8)
 
-                // Step 3: Set Arm downward and move backward to place the Specimen
+                // Step 3: Set Arm downward to prepare for placing the Specimen
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(40);})
                 .waitSeconds(0.2)
 
@@ -129,7 +129,6 @@ public class BucketSide_Auto extends LinearOpMode {
 
         // Wait for start signal
         waitForStart();
-
 
         // Execute the trajectory sequence
         drive.followTrajectorySequence(StageRedBucket);
