@@ -90,7 +90,8 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 //Step 5: Turn right 135 degree to drop off Sample 1
                 .turn(-Math.toRadians(135))
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> gripper.setGripperOpen())
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> gripper.setGripperOpen())
+                .waitSeconds(0.5)
 
 
                 // Step 6: Turn back and strafe right 12 inch to pick up Sample 2
@@ -103,7 +104,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 7: Turn right 135 degree to drop off Sample 2
                 .turn(-Math.toRadians(135))
-                .UNSTABLE_addTemporalMarkerOffset(0.2, () -> gripper.setGripperOpen())
+                .UNSTABLE_addTemporalMarkerOffset(0.1, () -> gripper.setGripperOpen())
                 .waitSeconds(0.5)
                 // Step 8: Pick up Specimen 2
                 .back(6)
@@ -132,7 +133,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 12: Strafe right to park
                 .strafeRight(41)
-                .back(3)
+                .back(6)
                 .waitSeconds(2)
 
                 // Final build for this trajectory
