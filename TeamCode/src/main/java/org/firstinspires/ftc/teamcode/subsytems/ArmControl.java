@@ -16,7 +16,6 @@ public class ArmControl {
 
     private double RuntoPositionPower=0.45;
 
-
     private int desArmPosTick;
     private double degreesPerTick = 360.0 / 5/1425.1;
 
