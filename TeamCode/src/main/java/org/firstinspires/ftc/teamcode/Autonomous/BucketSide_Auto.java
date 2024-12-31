@@ -33,6 +33,7 @@ public class BucketSide_Auto extends LinearOpMode {
         // - - - Setting up Arm motors - - - //
         armControl = new ArmControl(this);
         armControl.init(hardwareMap);
+        armControl.setDesArmPosDeg(-5);
 
         // - - - Setting up Slider motors - - - //
         sliderControl = new SliderControl(this);
@@ -120,7 +121,8 @@ public class BucketSide_Auto extends LinearOpMode {
                 .lineToLinearHeading(PushPos1)
                 .turn(-Math.toRadians(90))
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(28);})
-                .waitSeconds(0.1)
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {sliderControl.setDesSliderLen(10);})
+                .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setArmPower(-0.4);})
                 .waitSeconds(2)
 

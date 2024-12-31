@@ -34,7 +34,7 @@ public class Gripper {
     private double GripperOpen=0.93;
     //GripperOpen: The Gripper in the close position for pick up sample/specimen
     // for gripper servo
-    private double GripperClose=0.80;
+    private double GripperClose=0.78;
 
     //AnglerInit: The initial position for the angler servo
     private double AnglerInit=0.0;
