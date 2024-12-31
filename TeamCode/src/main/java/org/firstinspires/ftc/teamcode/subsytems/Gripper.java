@@ -67,7 +67,6 @@ public class Gripper {
     }
 
     public void init(HardwareMap hwMap)  {
-
         // Initialize the gripper
         //Control Hub port 0
         gripper = hwMap.get(Servo.class,"gripper");
@@ -75,22 +74,8 @@ public class Gripper {
         gripperholder = hwMap.get(Servo.class,"gripperholder");
         //Control Hub port 1
         angler = hwMap.get(Servo.class,"angler");
-
-
-
     }
 
-    //* The following should all be removed once the update is complete
-
-    public void gripperReverse(double factor){
-        //makes new level by taking factor to adjust the right position
-        double newLevel = 0.5+factor*0.5;
-        //finding reverse control, between 0-0.5
-        newLevel= Math.min(0.5, Math.max(Gripper_REVERSE,newLevel));
-        //adjusts
-        gripper.setPosition(newLevel);
-
-    }
     // Gripper open function
     public void setGripperOpen() {
         //Gripper open state
@@ -108,6 +93,7 @@ public class Gripper {
     }
     // Gripper Holder perpendicular to the holding bar
     public void setGripperHolderPerpendicular() {
+
         setGripperHolderPosition(GripperHolderRotPos);
     }
 
@@ -121,29 +107,6 @@ public class Gripper {
         //Gripper system Forward Position
         setAnglerPosition(AnglerRotPos);
     }
-
-    public void gripperForward(double factor){
-        //new level factor to adjust right position
-        double newLevel = factor*0.5+0.5;
-        //forward, between 0.5-1
-        newLevel = Math.min(Math.max(0.5,newLevel),Gripper_FORWARD);
-        //adjusts
-        gripper.setPosition(newLevel);
-    }
-    public void gripperStopped(){
-        gripper.setPosition(Gripper_STOP);
-    }
-
-    public void setAnglerUP() {
-        angler.setPosition(ANGLER_UP);//fwd
-    }
-    public void setAnglerDown() {
-        angler.setPosition(ANGLER_DOWN);//fwd
-    }
-    public void setAnglerInit() {
-        angler.setPosition(0.0);}
-
-    //*
 
     public void setAnglerPosition(double pos_request) {
         angler.setPosition(pos_request);}

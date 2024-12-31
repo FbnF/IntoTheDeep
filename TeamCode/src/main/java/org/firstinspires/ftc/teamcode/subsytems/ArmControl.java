@@ -14,7 +14,7 @@ public class ArmControl {
     private double DepositAngle=83;
     private double IntakeAngle= -10;
 
-    private double RuntoPositionPower=0.45;
+    private double RuntoPositionPower=0.6;
 
     private int desArmPosTick;
     private double degreesPerTick = 360.0 / 5/1425.1;

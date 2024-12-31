@@ -43,8 +43,8 @@ public class SimpleTeleop extends LinearOpMode {
     private int ArmIntakeInd=0;
     private int SliderDepositInd=0;
     private int SliderRetractInd=0;
-    private double SliderLenLimit=14.5;
     private double SliderCurLen;
+    private int SliderReset=0;
     private double ArmCurPosDeg;
     private int GripperRollInInd=0;
     private int setmode=0;
@@ -83,10 +83,10 @@ public class SimpleTeleop extends LinearOpMode {
         gripper = new Gripper(this);
         gripper.init(hardwareMap);
         //Gripper open state
-        gripper.setGripperOpen();
+        //gripper.setGripperOpen();
         //Gripper holder to the side
-        gripper.setGripperHolderParallel();
-        gripper.setAnglerSide();
+        //gripper.setGripperHolderParallel();
+        //gripper.setAnglerSide();
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();
@@ -169,6 +169,14 @@ public class SimpleTeleop extends LinearOpMode {
 
             // - - - Slider motor control - - - //
 
+            // Gamepad B button to: Reset slide encoder: slide must be fully retracted for this
+            if (gamepad1.b) {
+                if (SliderReset==0){
+                    sliderControl.SliderEncoderReset();
+                    SliderReset=1;
+                }
+            }
+
             // Controlling the slider motor using game pad2's left and right
             // triggers once magnitude > 0.1
             if (gamepad2.left_trigger > 0.2) {
@@ -194,6 +202,22 @@ public class SimpleTeleop extends LinearOpMode {
                     // zero power plus run mode reset
                     sliderControl.SliderRunModReset();
                 }
+            }
+            // dpad_up to fully extend the slide to drop off sample
+            if (gamepad2.dpad_up) {
+                SliderDepositInd = 1;
+                SliderRetractInd = 0;
+            }
+            if(SliderDepositInd==1) {
+                sliderControl.setSliderDeposit();
+            }
+            // dpad_down to fully retract the slide
+            if (gamepad2.dpad_down) {
+                SliderDepositInd = 0;
+                SliderRetractInd = 1;
+            }
+            if(SliderRetractInd==1) {
+                sliderControl.setDesSliderLen(0);
             }
 
             // - - - Gripper control - - - //

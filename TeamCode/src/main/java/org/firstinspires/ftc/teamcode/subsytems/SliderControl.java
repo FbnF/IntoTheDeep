@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsytems;
 
+import android.transition.Slide;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -21,7 +23,7 @@ public class SliderControl {
     // Retract length in Inch
     private double IntakeLength= 5;
 
-    private double RuntoPositionPower=0.45;
+    private double RuntoPositionPower=0.6;
 
 
     private int desSliderPosTick;
@@ -101,5 +103,10 @@ public class SliderControl {
     // Wrapper method to set the SliderMotor run mode to using encoder
     public void SliderRunModEncoder(){
         SliderMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    // Wrapper method to reset the SliderMotor encoder
+    public void SliderEncoderReset(){
+        SliderMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 }
