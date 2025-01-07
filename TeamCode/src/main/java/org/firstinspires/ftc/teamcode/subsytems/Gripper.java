@@ -25,27 +25,22 @@ public class Gripper {
 
     // Gripper subsystem constants
     // GripperHolderInit: The initial position for the gripperholder servo
-    private double GripperHolderInit=0.52;
-    //GripperHolderRotPos: The postion after rotation for the gripperholder servo
-    private double GripperHolderRotPos=0.87;
+    private double GripperHolderInit=0.42;
+    //GripperHolderRotPos: The position after rotation for the gripperholder servo
+    private double GripperHolderRotPos=0.76;
 
     //GripperOpen: The Gripper in the open position to prepare for pick up
     // sample/specimen for gripper servo
-    private double GripperOpen=0.93;
-    //GripperOpen: The Gripper in the close position for pick up sample/specimen
+    private double GripperOpen=0.42; //0.42
+    //GripperClose: The Gripper in the close position for pick up sample/specimen
     // for gripper servo
-    private double GripperClose=0.78;
+    private double GripperClose=0.21;//0.25
 
     //AnglerInit: The initial position for the angler servo
-    private double AnglerInit=0.0;
+    private double AnglerInit=0.30;
     //AnglerRotPos: The Position after Rotation for the angler servo
-    private double AnglerRotPos=0.3;
+    private double AnglerRotPos=0.66;
     //larer numbers are more clockwise
-
-
-    private static final double Gripper_STOP = 0.5; //speed servo stopped
-    private static final double Gripper_FORWARD = 1.0; //full speed forward
-    private static final double Gripper_REVERSE = 0.0; //full speed backward
 
 
     private static final double      ANGLER_UP     = 0.4; //1.0 parallel to ground
@@ -78,12 +73,28 @@ public class Gripper {
 
     // Gripper open function
     public void setGripperOpen() {
-        //Gripper open state
+        //Gripper Open state
         setGripperPosition(GripperOpen);
     }
-    // Gripper close function
+    // Return Gripper close position function
+    public double getGripperClosePos() {
+        //Gripper close position
+        return GripperClose;
+    }
+    // Return Gripper open position function
+    public double getGripperOpenPos() {
+        //Gripper open position
+        return GripperOpen;
+    }
+    // Return Gripper current position function
+    public double getGripperCurPos() {
+        //Gripper close position
+        return gripper.getPosition();
+    }
+
+    // Gripper open position function
     public void setGripperClosed() {
-        //Gripper open state
+        //Gripper Close state
         setGripperPosition(GripperClose);
     }
 

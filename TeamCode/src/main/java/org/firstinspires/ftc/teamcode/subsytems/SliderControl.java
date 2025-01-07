@@ -74,9 +74,9 @@ public class SliderControl {
         setDesSliderLen(IntakeLength);
     }
 
-    //setSliderRetract: Set slider length to be 2in less than current length
-    public void setSliderRetract(double CurLen, double RetractLen) {
-        setDesSliderLen(CurLen-RetractLen);
+    //setSliderLenIncrement: Set slider length to current length + increment
+    public void setSliderLenIncrement(double CurLen, double Increment) {
+        setDesSliderLen(CurLen+Increment);
     }
 
     //setSliderIntake: Set slider length to the Deposit length for deposit
