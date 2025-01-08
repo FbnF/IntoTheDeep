@@ -273,7 +273,42 @@ public class SimpleTeleop extends LinearOpMode {
             if (gamepad2.right_bumper) {
                 gripper.setGripperHolderParallel();
             }
+// gamepad1 dpad up to set the Gripper closer position to make the grip tighter,
+            // which is to compensate the fact that the gripper is not robust enough
+            // and it will lose its grip after several usage.
+            if (gamepad1.dpad_up) {
+                // Increment TighterGripAdjustInd when Y is pushed. Actual behaviour
+                // is that even a simple push will produce a signal being true for
+                // several loops.
+                TighterGripAdjustInd = TighterGripAdjustInd +1;
+            } else {
+                // Reset TighterGripAdjustInd when right bumper button is not pushed, this enables
+                // proper function of next right bumper button push
+                TighterGripAdjustInd=0;
+            }
+            // Only perform one tighter adjustment with one right bumper button push
+            if (TighterGripAdjustInd==1){
+                GripperTeleOpClosePos=GripperTeleOpClosePos-0.01;
+                gripper.setGripperPosition(GripperTeleOpClosePos);
+            }
 
+            // gamepad1 dpad down to set the Gripper closer position looser,
+            // which is to help with calibration
+            if (gamepad1.dpad_down ) {
+                // Increment TighterGripAdjustInd when Y is pushed. Actual behaviour
+                // is that even a simple push will produce a signal being true for
+                // several loops.
+                LooserGripAdjustInd = LooserGripAdjustInd +1;
+            } else {
+                // Reset LooserGripAdjustInd when leftt bumper button is not pushed, this enables
+                // proper function of next left bumper button push
+                LooserGripAdjustInd=0;
+            }
+            // Only perform one looser adjustment with one right bumper button push
+            if (LooserGripAdjustInd==1){
+                GripperTeleOpOpenPos=GripperTeleOpOpenPos+0.01;
+                gripper.setGripperPosition(GripperTeleOpOpenPos);
+            }
 
             // angler control using gamepad2 dpad left and right (Hat)
             // dpad_left to for the Gripper system to face forward
