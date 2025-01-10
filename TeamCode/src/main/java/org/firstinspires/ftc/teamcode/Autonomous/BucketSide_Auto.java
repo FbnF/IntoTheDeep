@@ -119,16 +119,16 @@ public class BucketSide_Auto extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.8, () -> gripper.setGripperClosed())
                 .waitSeconds(1)
                 .back(5)
-                .UNSTABLE_addTemporalMarkerOffset(0.2, () -> {sliderControl.setDesSliderLen(7);})
+                .UNSTABLE_addTemporalMarkerOffset(0.2, () -> {sliderControl.setDesSliderLen(9);})
                 .waitSeconds(0.8)
 
                 // Step 8: Go Back to the position PushPos1 for level 1 ascent
                 .lineToLinearHeading(PushPos1)
                 .turn(-Math.toRadians(90))
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(23);})
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(22);})
                 //.UNSTABLE_addTemporalMarkerOffset(0.0, () -> {sliderControl.setDesSliderLen(8);})
                 .waitSeconds(0.5)
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setArmPower(-0.4);})
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.ArmRunModReset();})
                 .waitSeconds(2)
 
                 //final build
