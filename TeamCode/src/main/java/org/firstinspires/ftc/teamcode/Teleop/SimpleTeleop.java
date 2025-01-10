@@ -92,6 +92,8 @@ public class SimpleTeleop extends LinearOpMode {
         //Gripper holder to the side
         //gripper.setGripperHolderParallel();
         //gripper.setAnglerSide();
+        gripper.setAnglerForward();
+        //gripper.setGripperHolderPerpendicular();
         
         // - - - Waiting for start signal from driver station - - - //
         waitForStart();

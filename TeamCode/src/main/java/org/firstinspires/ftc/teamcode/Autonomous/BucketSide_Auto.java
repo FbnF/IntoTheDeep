@@ -59,7 +59,7 @@ public class BucketSide_Auto extends LinearOpMode {
         Pose2d SpecimenDropoffPos = new Pose2d(35, 79, Math.toRadians(0));
         Pose2d SampleDropoffPos1 = new Pose2d(20, 123, Math.toRadians(135));
         Pose2d PushPos1 = new Pose2d(56, 100, Math.toRadians(0));
-        Pose2d SamplePickUpPos1 = new Pose2d(29.3, 120, Math.toRadians(0));
+        Pose2d SamplePickUpPos1 = new Pose2d(29.3, 119.2, Math.toRadians(0));
 
         // Define the trajectory sequence
         TrajectorySequence StageRedBucket = drive.trajectorySequenceBuilder(startPos)
@@ -125,7 +125,7 @@ public class BucketSide_Auto extends LinearOpMode {
                 // Step 8: Go Back to the position PushPos1 for level 1 ascent
                 .lineToLinearHeading(PushPos1)
                 .turn(-Math.toRadians(90))
-                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(25);})
+                .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(23);})
                 //.UNSTABLE_addTemporalMarkerOffset(0.0, () -> {sliderControl.setDesSliderLen(8);})
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setArmPower(-0.4);})
