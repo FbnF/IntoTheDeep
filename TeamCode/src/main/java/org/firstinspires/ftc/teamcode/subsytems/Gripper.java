@@ -25,16 +25,16 @@ public class Gripper {
 
     // Gripper subsystem constants
     // GripperHolderInit: The initial position for the gripperholder servo
-    private double GripperHolderInit=0.42;
+    private double GripperHolderInit=0.33;
     //GripperHolderRotPos: The position after rotation for the gripperholder servo
-    private double GripperHolderRotPos=0.76;
+    private double GripperHolderRotPos=0.7;
 
     //GripperOpen: The Gripper in the open position to prepare for pick up
     // sample/specimen for gripper servo
-    private double GripperOpen=0.42; //0.42
+    private double GripperOpen=0.63; //0.42
     //GripperClose: The Gripper in the close position for pick up sample/specimen
     // for gripper servo
-    private double GripperClose=0.21;//0.25
+    private double GripperClose=0.38;//0.25
 
     //AnglerInit: The initial position for the angler servo
     private double AnglerInit=0.30;
