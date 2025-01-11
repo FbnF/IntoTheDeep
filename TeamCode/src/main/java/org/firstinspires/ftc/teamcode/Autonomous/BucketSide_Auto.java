@@ -59,7 +59,7 @@ public class BucketSide_Auto extends LinearOpMode {
         Pose2d SpecimenDropoffPos = new Pose2d(35, 79, Math.toRadians(0));
         Pose2d SampleDropoffPos1 = new Pose2d(20, 123, Math.toRadians(135));
         Pose2d PushPos1 = new Pose2d(56, 100, Math.toRadians(0));
-        Pose2d SamplePickUpPos1 = new Pose2d(29.3, 119.2, Math.toRadians(0));
+        Pose2d SamplePickUpPos1 = new Pose2d(29.3, 119.6, Math.toRadians(0));
 
         // Define the trajectory sequence
         TrajectorySequence StageRedBucket = drive.trajectorySequenceBuilder(startPos)
