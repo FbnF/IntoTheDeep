@@ -2,15 +2,12 @@ package org.firstinspires.ftc.teamcode.subsytems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
 import static java.lang.Thread.sleep;
 
 @Config // this is so the dashboard will pick up variables
@@ -27,7 +24,7 @@ public class Gripper {
     // GripperHolderInit: The initial position for the gripperholder servo
     private double GripperHolderInit=0.33;
     //GripperHolderRotPos: The position after rotation for the gripperholder servo
-    private double GripperHolderRotPos=0.7;
+    private double GripperHolderRotPos=0.68;
 
     //GripperOpen: The Gripper in the open position to prepare for pick up
     // sample/specimen for gripper servo
@@ -36,10 +33,13 @@ public class Gripper {
     // for gripper servo
     private double GripperClose=0.38;//0.25
 
-    //AnglerInit: The initial position for the angler servo
-    private double AnglerInit=0.30;
-    //AnglerRotPos: The Position after Rotation for the angler servo
-    private double AnglerRotPos=0.66;
+    //AnglerForward: The initial position for the angler servo to ensure the gripper could
+    //pick up the specimen
+    private double AnglerForward=0.78;
+    //AnglerRotPos: The down Position for the angler servo to allow regular sample pick up
+    private double AnglerDownPos=0.39;
+    // AnglerInitPos: Initial angler position to meet the dimension limitation
+    private double AnglerInitPos=0.15;
     //larer numbers are more clockwise
 
 
@@ -109,14 +109,20 @@ public class Gripper {
     }
 
     // Gripper system facing the side
-    public void setAnglerSide() {
-        //Gripper system Side Position
-        setAnglerPosition(AnglerInit);
-    }
-    // Gripper system facing forward
     public void setAnglerForward() {
+        //Gripper system Side Position
+        setAnglerPosition(AnglerForward);
+    }
+
+    // Gripper system down position for regular pick up
+    public void setAnglerDown() {
         //Gripper system Forward Position
-        setAnglerPosition(AnglerRotPos);
+        setAnglerPosition(AnglerDownPos);
+    }
+    // Gripper system init status
+    public void setAnglerInit() {
+        //Gripper system Forward Position
+        setAnglerPosition(AnglerInitPos);
     }
 
     public void setAnglerPosition(double pos_request) {

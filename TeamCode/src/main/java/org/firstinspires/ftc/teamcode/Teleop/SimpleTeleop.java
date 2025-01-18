@@ -6,7 +6,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -91,8 +90,8 @@ public class SimpleTeleop extends LinearOpMode {
         //gripper.setGripperOpen();
         //Gripper holder to the side
         //gripper.setGripperHolderParallel();
-        //gripper.setAnglerSide();
-        gripper.setAnglerForward();
+        //gripper.setAnglerForward();
+        gripper.setAnglerDown();
         //gripper.setGripperHolderPerpendicular();
         
         // - - - Waiting for start signal from driver station - - - //
@@ -315,11 +314,11 @@ public class SimpleTeleop extends LinearOpMode {
             // angler control using gamepad2 dpad left and right (Hat)
             // dpad_left to for the Gripper system to face forward
             if (gamepad2.dpad_left) {
-                gripper.setAnglerForward();
+                gripper.setAnglerDown();
             }
             // dpad_right to set the Gripper system to the Side position
             if (gamepad2.dpad_right) {
-                gripper.setAnglerSide();
+                gripper.setAnglerForward();
             }
 
 

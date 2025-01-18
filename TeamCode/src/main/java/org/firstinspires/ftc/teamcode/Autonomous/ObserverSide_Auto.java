@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -45,9 +43,9 @@ public class ObserverSide_Auto extends LinearOpMode {
         gripper.init(hardwareMap);
         //Gripper closed state
         gripper.setGripperClosed();
-        //Gripper holder to the side
-        gripper.setGripperHolderParallel();
-        gripper.setAnglerSide();
+        //Gripper holder perpendicular to the bar
+        gripper.setGripperHolderPerpendicular();
+        gripper.setAnglerInit();
 
 
         // Define starting position
@@ -68,7 +66,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 1: Set the gripper and arm in the right position for Specimen drop off
                 .UNSTABLE_addTemporalMarkerOffset(0.0, () -> {armControl.setDesArmPosDeg(74);})
-                .UNSTABLE_addTemporalMarkerOffset(0.3,()->{gripper.setAnglerForward();})
+                .UNSTABLE_addTemporalMarkerOffset(0.3,()->{gripper.setAnglerDown();})
                 .UNSTABLE_addTemporalMarkerOffset(0.3,()->{gripper.setGripperHolderPerpendicular();})
                 .waitSeconds(0.5)
 
