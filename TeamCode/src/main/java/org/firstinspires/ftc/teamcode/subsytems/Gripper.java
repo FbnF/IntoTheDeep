@@ -21,25 +21,25 @@ public class Gripper {
 
 
     // Gripper subsystem constants
-    // GripperHolderInit: The initial position for the gripperholder servo
-    private double GripperHolderInit=0.33;
-    //GripperHolderRotPos: The position after rotation for the gripperholder servo
-    private double GripperHolderRotPos=0.68;
+    // GripperHolderParallel: The initial position for the gripperholder servo
+    private double GripperHolderParallel=0.42;//0.33;
+    //GripperHolderPerpendicular: The position after rotation for the gripperholder servo
+    private double GripperHolderPerpendicular=0.77;//0.68;
 
     //GripperOpen: The Gripper in the open position to prepare for pick up
     // sample/specimen for gripper servo
-    private double GripperOpen=0.63; //0.42
+    private double GripperOpen=0.56;//0.64; //0.42
     //GripperClose: The Gripper in the close position for pick up sample/specimen
     // for gripper servo
-    private double GripperClose=0.38;//0.25
+    private double GripperClose=0.35;//0.32;//0.25
 
-    //AnglerForward: The initial position for the angler servo to ensure the gripper could
+    //AnglerSamplePos: The initial position for the angler servo to ensure the gripper could
     //pick up the specimen
-    private double AnglerForward=0.78;
-    //AnglerRotPos: The down Position for the angler servo to allow regular sample pick up
-    private double AnglerDownPos=0.39;
+    private double AnglerSamplePos =0.70;
+    //AnglerSpecimenPos: The angler servo Position for the angler servo to allow regular specimen pick up
+    private double AnglerSpecimenPos =0.34;
     // AnglerInitPos: Initial angler position to meet the dimension limitation
-    private double AnglerInitPos=0.15;
+    private double AnglerInitPos=0.07;
     //larer numbers are more clockwise
 
 
@@ -67,6 +67,7 @@ public class Gripper {
         gripper = hwMap.get(Servo.class,"gripper");
         //Control Hub port 2
         gripperholder = hwMap.get(Servo.class,"gripperholder");
+        //gripperholder.setDirection(Servo.Direction.REVERSE);
         //Control Hub port 1
         angler = hwMap.get(Servo.class,"angler");
     }
@@ -100,24 +101,24 @@ public class Gripper {
 
     // Gripper Holder parallel to the holding bar
     public void setGripperHolderParallel() {
-        setGripperHolderPosition(GripperHolderInit);
+        setGripperHolderPosition(GripperHolderParallel);
     }
     // Gripper Holder perpendicular to the holding bar
     public void setGripperHolderPerpendicular() {
 
-        setGripperHolderPosition(GripperHolderRotPos);
+        setGripperHolderPosition(GripperHolderPerpendicular);
     }
 
     // Gripper system facing the side
-    public void setAnglerForward() {
+    public void setAnglerSample() {
         //Gripper system Side Position
-        setAnglerPosition(AnglerForward);
+        setAnglerPosition(AnglerSamplePos);
     }
 
     // Gripper system down position for regular pick up
-    public void setAnglerDown() {
+    public void setAnglerSpecimen() {
         //Gripper system Forward Position
-        setAnglerPosition(AnglerDownPos);
+        setAnglerPosition(AnglerSpecimenPos);
     }
     // Gripper system init status
     public void setAnglerInit() {

@@ -82,7 +82,7 @@ public class SquareAuto extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.setAnglerUP();})
                 .lineToLinearHeading(new Pose2d(5,5,Math.toRadians(90)))
                 .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.gripperOpen();})
-                .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.setAnglerDown();})
+                .UNSTABLE_addTemporalMarkerOffset(0.0,()->{gripper.setAnglerSpecimen();})
                 .build();
         drive.followTrajectorySequence(TestNow);
 

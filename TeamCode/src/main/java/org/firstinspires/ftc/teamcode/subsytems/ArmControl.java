@@ -84,6 +84,7 @@ public class ArmControl {
 
     // Wrapper method to set the ArmMotor power level to PwrLevel
     public void setArmPower(double PwrLevel){
+        ArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ArmMotor.setPower(PwrLevel);
     }
 
