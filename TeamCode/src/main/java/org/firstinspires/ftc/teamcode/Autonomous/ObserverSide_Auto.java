@@ -52,15 +52,15 @@ public class ObserverSide_Auto extends LinearOpMode {
         Pose2d startPos = new Pose2d(8, 53, Math.toRadians(0));
         drive.setPoseEstimate(startPos);
 
-        Pose2d SamplePickUpPos1 = new Pose2d(35.5, 22.2, Math.toRadians(0));
-        Pose2d SamplePickUpPos2 = new Pose2d(35.6, 15.2, Math.toRadians(0));
+        Pose2d SamplePickUpPos1 = new Pose2d(35.5, 22, Math.toRadians(0));
+        Pose2d SamplePickUpPos2 = new Pose2d(35.6, 15, Math.toRadians(0));
 
         Pose2d SpecimenDropoffPos = new Pose2d(32, 65, Math.toRadians(0));
         Pose2d SpecimenDropoffPos2 = new Pose2d(32.7, 68, Math.toRadians(0));
         Pose2d SpecimenDropoffPos3 = new Pose2d(32.7, 62, Math.toRadians(0));
 
         Pose2d SampleDropoffPos = new Pose2d(28, 26, -Math.toRadians(135));
-        Pose2d SpecimenPickupPos = new Pose2d(22, 44, -Math.toRadians(135));
+        Pose2d SpecimenPickupPos = new Pose2d(23, 45, -Math.toRadians(135));
         Pose2d ParkPos = new Pose2d(10, 11, Math.toRadians(0));
 
         // Define the trajectory sequence for the Observer side
@@ -135,7 +135,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 8: Specimen 2 drop off attempt
                 .lineToLinearHeading(SpecimenDropoffPos2)
-                .forward(5.5)
+                .forward(6)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {armControl.setDesArmPosDeg(45);})
                 .waitSeconds(0.1)
                 // Step 9: Move backward and open the Gripper to place and release the Specimen.
@@ -168,7 +168,7 @@ public class ObserverSide_Auto extends LinearOpMode {
 
                 // Step 8: Specimen 3 drop off attempt
                 .lineToLinearHeading(SpecimenDropoffPos3)
-                .forward(5.5)
+                .forward(6)
                 .UNSTABLE_addTemporalMarkerOffset(0.1, () -> {armControl.setDesArmPosDeg(45);})
                 .waitSeconds(0.1)
                 // Step 9: Move backward and open the Gripper to place and release the Specimen.
